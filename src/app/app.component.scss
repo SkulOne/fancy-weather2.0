@@ -1,0 +1,11 @@
+.wrapper{
+  height: 100vh;
+  background-color: black;
+  background-size: cover;
+  background-position: center;
+  .content{
+    padding: 0 2rem;
+    height: 100%;
+    background-color: rgba(0,0,0,0.50)
+  }
+}

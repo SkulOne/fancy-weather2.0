@@ -1,0 +1,25 @@
+input{
+  color: white;
+}
+mat-icon{
+  color: white;
+}
+
+.change-image-btn{
+  margin-bottom: 1.2rem;
+  margin-right: 1rem;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+:host{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.disable-spinner{
+  display: none;
+}
