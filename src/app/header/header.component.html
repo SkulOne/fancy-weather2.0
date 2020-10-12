@@ -11,7 +11,7 @@
     [class.disable-spinner]="!isLoading"
   >image</mat-icon>
 </button>
-<form #locationForm="ngForm" (ngSubmit)="onSubmit(locationForm.value)">
+<form #locationForm="ngForm" (ngSubmit)="onSubmit()">
   <mat-form-field appearance="outline">
     <mat-label>Outline form field</mat-label>
     <input

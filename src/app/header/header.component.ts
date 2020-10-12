@@ -1,5 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ImageService} from '../shared/services/image.service';
+import {WeatherService} from '../shared/services/weather.service';
 
 @Component({
   selector: 'app-header',
@@ -11,14 +12,14 @@ export class HeaderComponent implements OnInit {
   isLoading = true;
   @Output() backgroundChange = new EventEmitter<string>();
 
-  constructor(private imageService: ImageService) {
+  constructor(private imageService: ImageService, private weatherService: WeatherService) {
   }
 
   ngOnInit(): void {
   }
 
-  onSubmit(value: string): void {
-    console.log(value);
+  onSubmit(): void {
+    this.weatherService.search(this.location);
   }
 
   changeBackgroundTrigger(): any {

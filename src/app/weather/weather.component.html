@@ -1,0 +1,14 @@
+<ng-container *ngIf="currentWeather">
+<div class="current-day-location">
+  {{currentWeather.location.name}},
+  {{currentWeather.location.region}},
+  {{currentWeather.location.country}}
+</div>
+<div class="current-time">
+  {{currentWeather.location.date.toDateString()}}
+</div>
+<app-day-detail  [dayWeather]="currentWeather"></app-day-detail>
+<div class="next-days">
+  <app-day-short *ngFor="let weather of shortWeather" [dayWeather]="weather"></app-day-short>
+</div>
+</ng-container>

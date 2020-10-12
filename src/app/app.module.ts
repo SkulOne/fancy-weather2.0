@@ -14,6 +14,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { WeekDayPipe } from './shared/week-day.pipe';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     WeatherComponent,
     DayDetailComponent,
     DayShortComponent,
-    HeaderComponent
+    HeaderComponent,
+    WeekDayPipe
   ],
   imports: [
     BrowserModule,
