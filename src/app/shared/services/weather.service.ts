@@ -4,12 +4,18 @@ import {HttpClient} from '@angular/common/http';
 import {combineAll, map, mergeAll, } from 'rxjs/operators';
 import {Weather} from '../interfaces/weather';
 import {Location} from '../interfaces/location';
+import {LocationService} from './location.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WeatherService {
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private locationService: LocationService) {
+    locationService.coords.subscribe(() => {
+      locationService.getCity().subscribe(city => {
+        this.search(city);
+      });
+    });
   }
 
   private readonly URL = 'http://api.weatherapi.com/v1';

@@ -13,6 +13,7 @@ export class WeatherComponent implements OnInit {
 
   constructor(private weatherService: WeatherService) {
     this.weatherService.trigger.subscribe((weather) => {
+      // @ts-ignore
       [this.currentWeather, ...this.shortWeather] = weather;
     });
   }

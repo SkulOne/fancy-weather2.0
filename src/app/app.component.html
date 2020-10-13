@@ -2,6 +2,9 @@
      [style.background-image]="'url('+backgroundImage+')'">
   <div class="content">
     <app-header (backgroundChange)="changeBackground($event)"></app-header>
-    <app-weather></app-weather>
+    <div class="content-wrapper">
+      <app-weather></app-weather>
+      <app-map></app-map>
+    </div>
   </div>
 </div>
