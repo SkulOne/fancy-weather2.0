@@ -1,10 +1,10 @@
-import {Component} from '@angular/core';
-import {ImageService} from './shared/services/image.service';
+import { Component } from '@angular/core';
+import { ImageService } from './shared/services/image.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   title = 'weather-app2';
@@ -19,4 +19,3 @@ export class AppComponent {
     this.backgroundImage = value;
   }
 }
-

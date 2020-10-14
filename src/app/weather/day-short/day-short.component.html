@@ -1,5 +1,5 @@
-<span class="day-of-week">{{dayWeather.location.date | weekDay | uppercase}}</span>
+<span class="day-of-week">{{ dayWeather.location.date | weekDay | uppercase }}</span>
 <span class="day-temp">
-  {{dayWeather.temp | number:'1.0-0'}}°
-  <img src="{{dayWeather.icon}}" alt="" height="45" width="45">
+  {{ dayWeather.temp | number: '1.0-0' }}°
+  <img src="{{ dayWeather.icon }}" alt="" height="45" width="45" />
 </span>

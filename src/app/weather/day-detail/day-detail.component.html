@@ -1,9 +1,10 @@
-<span class="day-temp">{{dayWeather.temp | number:'1.0-0'}}
-  <img src="{{dayWeather.icon}}" alt="" class="weather-icon">
+<span class="day-temp"
+  >{{ dayWeather.temp | number: '1.0-0' }}
+  <img src="{{ dayWeather.icon }}" alt="" class="weather-icon" />
 </span>
 <ul>
-  <li>{{dayWeather.weatherStateName | uppercase }}</li>
+  <li>{{ dayWeather.weatherStateName | uppercase }}</li>
   <li>FEELS LIKE:</li>
-  <li>WIND: {{dayWeather.windSpeed}}M/S</li>
-  <li>HUMIDITY: {{dayWeather.humidity}}%</li>
+  <li>WIND: {{ dayWeather.windSpeed }}M/S</li>
+  <li>HUMIDITY: {{ dayWeather.humidity }}%</li>
 </ul>

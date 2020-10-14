@@ -1,11 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import {WeatherService} from '../shared/services/weather.service';
-import {Weather} from '../shared/interfaces/weather';
+import { Component, OnInit } from '@angular/core';
+import { WeatherService } from '../shared/services/weather.service';
+import { Weather } from '../shared/interfaces/weather';
 
 @Component({
   selector: 'app-weather',
   templateUrl: './weather.component.html',
-  styleUrls: ['./weather.component.scss']
+  styleUrls: ['./weather.component.scss'],
 })
 export class WeatherComponent implements OnInit {
   currentWeather: Weather;
@@ -18,7 +18,5 @@ export class WeatherComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

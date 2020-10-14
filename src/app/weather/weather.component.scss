@@ -1,17 +1,17 @@
-:host{
+:host {
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   color: white;
   font-weight: bold;
-  .current-day-location{
+  .current-day-location {
     font-size: 2rem;
   }
-  .current-time{
+  .current-time {
     font-size: 1.5rem;
   }
-  .next-days{
+  .next-days {
     display: flex;
     justify-content: space-between;
   }

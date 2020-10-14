@@ -1,11 +1,11 @@
-input{
+input {
   color: white;
 }
-mat-icon{
+mat-icon {
   color: white;
 }
 
-.change-image-btn{
+.change-image-btn {
   margin-bottom: 1.2rem;
   margin-right: 1rem;
   padding: 0.5rem;
@@ -13,13 +13,13 @@ mat-icon{
   justify-content: center;
 }
 
-:host{
+:host {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   padding: 1rem 0;
 }
 
-.disable-spinner{
+.disable-spinner {
   display: none;
 }
