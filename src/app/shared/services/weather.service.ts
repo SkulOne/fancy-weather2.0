@@ -5,28 +5,33 @@ import { combineAll, map, mergeAll } from 'rxjs/operators';
 import { Weather } from '../interfaces/weather';
 import { Location } from '../interfaces/location';
 import { LocationService } from './location.service';
+import { Coords } from '../interfaces/coords';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WeatherService {
+  trigger = new Subject();
+  private readonly URL = 'http://api.weatherapi.com/v1';
+  private readonly KEY = 'key=ca6b98f646f04779950144630202405';
+
   constructor(private httpClient: HttpClient, private locationService: LocationService) {
-    locationService.coords.subscribe((coords) => {
-      this.search(`${coords.lat},${coords.lng}`);
+    locationService.coordsTrigger.subscribe((coords) => {
+      coords.subscribe((value) => this.search(`${value.lat},${value.lng}`));
     });
   }
 
-  private readonly URL = 'http://api.weatherapi.com/v1';
-  private readonly KEY = 'key=ca6b98f646f04779950144630202405';
-  trigger = new Subject();
-
-  search(city): void {
-    this.getWeather(city).subscribe((value) => {
+  search(locations: string | Coords): void {
+    this.getWeather(locations).subscribe((value) => {
       this.trigger.next(value);
     });
   }
 
-  private getWeather(query: string): Observable<any> {
+  protected makeQuery(locations: string | Coords): string {
+    return typeof locations === 'string' ? locations : `${locations.lat},${locations.lng}`;
+  }
+
+  private getWeather(query: string | Coords): Observable<any> {
     const dates: Date[] = this.createDates();
     return forkJoin(
       dates.map((date) => this.httpClient.get(`${this.URL}/forecast.json?${this.KEY}&q=${query}&dt=${date}`))

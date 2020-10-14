@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Coords, LocationService } from '../shared/services/location.service';
+import { LocationService } from '../shared/services/location.service';
+import { Coords } from '../shared/interfaces/coords';
 
 @Component({
   selector: 'app-map',
@@ -11,7 +12,11 @@ export class MapComponent implements OnInit {
   coords: Observable<Coords>;
 
   constructor(private locationService: LocationService) {
-    this.coords = locationService.coords;
+    // todo исправить костыль
+    this.locationService.coordsTrigger.subscribe((value) => {
+      this.coords = value;
+    });
+    this.locationService.coordsTrigger.next(this.locationService.getUserCoords());
   }
 
   ngOnInit(): void {}
