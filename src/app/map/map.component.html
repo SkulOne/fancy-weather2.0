@@ -1,1 +1,21 @@
-<agm-map *ngIf="coords" [latitude]="coords.lat" [longitude]="coords.lng" [fitBounds]="bounds"> </agm-map>
+<div class="wrapper">
+  <agm-map
+    *ngIf="coords"
+    [latitude]="coords.lat"
+    [longitude]="coords.lng"
+    [fitBounds]="bounds"
+    (mapClick)="setLocation($event.coords)"
+  >
+    <agm-marker
+      *ngIf="coords"
+      [latitude]="coords.lat"
+      [longitude]="coords.lng"
+      [markerDraggable]="true"
+      (dragEnd)="setLocation($event.coords)"
+    ></agm-marker>
+  </agm-map>
+</div>
+<div class="coords-label" *ngIf="coords">
+  <span>Lat: {{ coords.lat }}</span>
+  <span>Lng: {{ coords.lng }}</span>
+</div>

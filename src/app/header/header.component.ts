@@ -3,6 +3,7 @@ import { ImageService } from '../shared/services/image.service';
 import { WeatherService } from '../shared/services/weather.service';
 import { LocationService } from '../shared/services/location.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { of } from 'rxjs';
 import PlaceResult = google.maps.places.PlaceResult;
 import LatLngBounds = google.maps.LatLngBounds;
 
@@ -37,6 +38,7 @@ export class HeaderComponent implements OnInit {
         lng: place.geometry.location.lng(),
       });
       this.locationsService.setBounds(place.geometry.viewport);
+      this.locationsService.setCoords(of({ lat: place.geometry.location.lat(), lng: place.geometry.location.lng() }));
     }
   }
 

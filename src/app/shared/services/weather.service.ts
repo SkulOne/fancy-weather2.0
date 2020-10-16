@@ -35,9 +35,7 @@ export class WeatherService {
       )
     ).pipe(
       mergeAll(),
-      map((weather) => {
-        return this.createWeather(weather);
-      }),
+      map((weather) => this.createWeather(weather)),
       combineAll()
     );
   }
@@ -50,7 +48,7 @@ export class WeatherService {
     });
   }
 
-  private createWeather(weatherRequest: any): Weather[] {
+  protected createWeather(weatherRequest: any): Weather[] {
     const weatherProperty = weatherRequest.forecast.forecastday[0];
     const location = weatherRequest.location;
     return [
