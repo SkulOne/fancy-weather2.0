@@ -1,1 +1,1 @@
-<google-map></google-map>
+<agm-map *ngIf="coords" [latitude]="coords.lat" [longitude]="coords.lng" [fitBounds]="bounds"> </agm-map>

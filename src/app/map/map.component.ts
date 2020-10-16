@@ -1,8 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import { LocationService } from '../shared/services/location.service';
 import { Coords } from '../shared/interfaces/coords';
-import { GoogleMap } from '@angular/google-maps';
+import LatLngBounds = google.maps.LatLngBounds;
 
 @Component({
   selector: 'app-map',
@@ -10,17 +9,18 @@ import { GoogleMap } from '@angular/google-maps';
   styleUrls: ['./map.component.scss'],
 })
 export class MapComponent implements OnInit {
-  coords: Observable<Coords>;
-  @ViewChild(GoogleMap, { static: false }) map: GoogleMap;
+  coords: Coords;
+  bounds: LatLngBounds;
 
   constructor(private locationService: LocationService) {
     // todo исправить костыль
     this.locationService.coordsTrigger.subscribe((value) => {
       value.subscribe((coords) => {
-        this.map.panTo(coords);
+        this.coords = coords;
       });
     });
     this.locationService.coordsTrigger.next(this.locationService.getUserCoords());
+    this.locationService.boundsTrigger.subscribe((value) => (this.bounds = value));
   }
 
   ngOnInit(): void {}

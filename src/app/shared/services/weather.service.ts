@@ -17,24 +17,22 @@ export class WeatherService {
 
   constructor(private httpClient: HttpClient, private locationService: LocationService) {
     locationService.coordsTrigger.subscribe((coords) => {
-      coords.subscribe((value) => this.search(`${value.lat},${value.lng}`));
+      coords.subscribe((value) => this.search(value));
     });
   }
 
-  search(locations: string | Coords): void {
+  search(locations: Coords): void {
     this.getWeather(locations).subscribe((value) => {
       this.trigger.next(value);
     });
   }
 
-  protected makeQuery(locations: string | Coords): string {
-    return typeof locations === 'string' ? locations : `${locations.lat},${locations.lng}`;
-  }
-
-  private getWeather(query: string | Coords): Observable<any> {
+  private getWeather(query: Coords): Observable<any> {
     const dates: Date[] = this.createDates();
     return forkJoin(
-      dates.map((date) => this.httpClient.get(`${this.URL}/forecast.json?${this.KEY}&q=${query}&dt=${date}`))
+      dates.map((date) =>
+        this.httpClient.get(`${this.URL}/forecast.json?${this.KEY}&q=${query.lat},${query.lng}&dt=${date}`)
+      )
     ).pipe(
       mergeAll(),
       map((weather) => {

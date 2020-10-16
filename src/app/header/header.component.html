@@ -2,11 +2,19 @@
   <mat-spinner [class.disable-spinner]="isLoading" diameter="25"></mat-spinner>
   <mat-icon [class.disable-spinner]="!isLoading">image</mat-icon>
 </button>
-<form #locationForm="ngForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
   <mat-form-field appearance="outline">
     <mat-label>Outline form field</mat-label>
-    <input autocomplete="off" matInput placeholder="Enter city or coord" [(ngModel)]="location" name="city" />
-    <mat-icon matSuffix>search</mat-icon>
-    <mat-hint>Hint</mat-hint>
+    <input
+      matGoogleMapsAutocomplete
+      type="(cities)"
+      autocomplete="off"
+      matInput
+      formControlName="query"
+      placeholder="Enter city or coord"
+      (onAutocompleteSelected)="onSubmit()"
+    />
+    <mat-hint>Select a city from the dropdown list</mat-hint>
+    <mat-error>test</mat-error>
   </mat-form-field>
 </form>

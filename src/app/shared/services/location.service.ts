@@ -1,34 +1,23 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable, of, Subject } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { Coords } from '../interfaces/coords';
+import LatLngBounds = google.maps.LatLngBounds;
 
 @Injectable({
   providedIn: 'root',
 })
 export class LocationService {
   coordsTrigger = new Subject<Observable<Coords>>();
+  boundsTrigger = new Subject<LatLngBounds>();
 
-  constructor(private httpClient: HttpClient) {}
+  constructor() {}
 
-  setCoords(locations: string | Coords): void {
-    if (typeof locations === 'string') {
-      this.coordsTrigger.next(this.getCityCoords(locations));
-    } else {
-      this.coordsTrigger.next(of(locations));
-    }
+  setCoords(locations: Coords): void {
+    this.coordsTrigger.next(of(locations));
   }
 
-  private getCityCoords(city: string): Observable<Coords> {
-    return this.httpClient
-      .get(
-        `https://maps.googleapis.com/maps/api/geocode/json?address=${city}&key=AIzaSyDLs3CudxoCs9C43iKaJqQ31Xg3w89_8G8`
-      )
-      .pipe(
-        // @ts-ignore
-        map((value) => value.results[0].geometry.location as Coords)
-      );
+  setBounds(bounds: LatLngBounds): void {
+    this.boundsTrigger.next(bounds);
   }
 
   getUserCoords(): Observable<Coords> {
@@ -36,6 +25,7 @@ export class LocationService {
       if ('geolocation' in navigator) {
         navigator.geolocation.getCurrentPosition(
           (position: Position) => {
+            console.log(position);
             const coords = {
               lat: position.coords.latitude,
               lng: position.coords.longitude,

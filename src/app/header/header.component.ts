@@ -2,6 +2,9 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ImageService } from '../shared/services/image.service';
 import { WeatherService } from '../shared/services/weather.service';
 import { LocationService } from '../shared/services/location.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import PlaceResult = google.maps.places.PlaceResult;
+import LatLngBounds = google.maps.LatLngBounds;
 
 @Component({
   selector: 'app-header',
@@ -9,26 +12,31 @@ import { LocationService } from '../shared/services/location.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  location: string;
-  isLoading = true;
   @Output() backgroundChange = new EventEmitter<string>();
+  isLoading = true;
+  form: FormGroup;
+  bounds: LatLngBounds;
 
   constructor(
     private imageService: ImageService,
     private weatherService: WeatherService,
     private locationsService: LocationService
-  ) {}
+  ) {
+    this.form = new FormGroup({
+      query: new FormControl('', [Validators.required]),
+    });
+  }
 
   ngOnInit(): void {}
 
   onSubmit(): void {
-    this.weatherService.search(this.location);
-
-    if (/^-?(\d+\.?\d+),\s?-?(\d+\.?\d+)$/.test(this.location)) {
-      const coordsArray = this.location.trim().split(/,\s?/);
-      this.locationsService.setCoords({ lat: coordsArray[0], lng: coordsArray[1] });
-    } else {
-      this.locationsService.setCoords(this.location);
+    if (this.form.valid) {
+      const place: PlaceResult = this.form.value.query;
+      this.weatherService.search({
+        lat: place.geometry.location.lat(),
+        lng: place.geometry.location.lng(),
+      });
+      this.locationsService.setBounds(place.geometry.viewport);
     }
   }
 
@@ -40,6 +48,3 @@ export class HeaderComponent implements OnInit {
     });
   }
 }
-
-// https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA
-// https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=YOUR_API_KEY
