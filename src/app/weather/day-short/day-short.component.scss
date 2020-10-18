@@ -1,6 +1,4 @@
 :host {
-  color: white;
-  font-weight: bold;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -12,9 +10,12 @@
   }
   .day-temp {
     font-size: 4rem;
-    line-height: 4.2rem;
     display: flex;
     justify-content: center;
+    img {
+      width: 2.8125rem;
+      height: 2.8125rem;
+    }
   }
   .show-modal-wrapper {
     display: none;

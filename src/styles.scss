@@ -1,10 +1,59 @@
 /* You can add global styles to this file, and also import other style files */
 
-html,
+html {
+  height: 100%;
+}
 body {
   height: 100%;
 }
 body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+@media screen and (min-width: 1441px) {
+  html {
+    font-size: 20px;
+  }
+}
+@media screen and (max-width: 1440px) {
+  html {
+    font-size: 15px;
+  }
+}
+@media screen and (max-width: 1024px) {
+  html {
+    font-size: 10px;
+  }
+}
+@media screen and (max-width: 768px) {
+  html {
+    font-size: 11px;
+  }
+  body {
+    height: auto;
+  }
+}
+@media screen and (max-width: 599px) {
+  html {
+    font-size: 11px;
+  }
+  body {
+    height: auto;
+  }
+}
+@media screen and (max-width: 375px) {
+  html {
+    font-size: 10px;
+  }
+}
+@media screen and (max-width: 320px) {
+  html {
+    font-size: 9px;
+  }
+}
+@media screen and (max-width: 280px) {
+  html {
+    font-size: 6px;
+  }
 }

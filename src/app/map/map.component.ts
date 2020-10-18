@@ -15,7 +15,6 @@ export class MapComponent implements OnInit {
   bounds: LatLngBounds;
 
   constructor(private locationService: LocationService, private weatherService: WeatherService) {
-    // todo исправить костыль
     this.locationService.coordsTrigger.subscribe((value) => {
       value.subscribe((coords) => {
         console.log(coords);

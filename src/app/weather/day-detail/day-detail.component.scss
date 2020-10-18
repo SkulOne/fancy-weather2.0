@@ -1,24 +1,21 @@
 :host {
   display: flex;
   align-items: center;
-  color: white;
-  font-weight: bold;
   justify-content: space-evenly;
   .day-temp {
-    font-size: 20rem;
-    line-height: 21rem;
+    font-size: 18rem;
     position: relative;
   }
   .weather-icon {
     position: absolute;
-    top: 0;
+    top: -20px;
     right: -80px;
-    width: 150px;
+    width: 9.375rem;
   }
   ul {
     list-style: none;
-    align-self: flex-end;
     padding: 0;
+    z-index: 1;
     li {
       font-size: 1.5rem;
       padding: 0.6rem;
