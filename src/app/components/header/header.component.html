@@ -1,0 +1,21 @@
+<button (click)="changeBackgroundTrigger()" class="change-image-btn" mat-stroked-button aria-label="Change image">
+  <mat-spinner [class.disable-spinner]="isLoading" diameter="25"></mat-spinner>
+  <mat-icon [class.disable-spinner]="!isLoading">image</mat-icon>
+</button>
+<div class="spacer"></div>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="outline">
+    <mat-label>City</mat-label>
+    <input
+      matGoogleMapsAutocomplete
+      type="(cities)"
+      autocomplete="off"
+      matInput
+      formControlName="query"
+      placeholder="Start typing city..."
+      (onAutocompleteSelected)="onSubmit()"
+    />
+    <mat-hint>Select a city from the dropdown list</mat-hint>
+    <mat-error>test</mat-error>
+  </mat-form-field>
+</form>

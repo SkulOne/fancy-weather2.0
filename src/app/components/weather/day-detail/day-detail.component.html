@@ -1,0 +1,10 @@
+<span class="day-temp"
+  >{{ dayWeather.temp | number: '1.0-0' }}
+  <img src="{{ dayWeather.icon }}" alt="" class="weather-icon" />
+</span>
+<ul>
+  <li>{{ dayWeather.weatherStateName | uppercase }}</li>
+  <li>WIND: {{ dayWeather.windSpeed }}K/PH</li>
+  <li>CHANCE OF RAIN: {{ dayWeather.chanceOfRain }} %</li>
+  <li>HUMIDITY: {{ dayWeather.humidity }}%</li>
+</ul>

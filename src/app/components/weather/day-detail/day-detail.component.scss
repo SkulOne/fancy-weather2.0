@@ -1,0 +1,24 @@
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  .day-temp {
+    font-size: 18rem;
+    position: relative;
+  }
+  .weather-icon {
+    position: absolute;
+    top: -20px;
+    right: -80px;
+    width: 9.375rem;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    z-index: 1;
+    li {
+      font-size: 1.5rem;
+      padding: 0.6rem;
+    }
+  }
+}

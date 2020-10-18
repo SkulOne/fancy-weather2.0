@@ -1,0 +1,10 @@
+<span class="day-of-week">{{ dayWeather.location.date | weekDay | uppercase }}</span>
+<span class="day-temp">
+  {{ dayWeather.temp | number: '1.0-0' }}°
+  <img src="{{ dayWeather.icon }}" alt="" />
+</span>
+<div class="show-modal-wrapper">
+  <button class="show-modal-btn" mat-icon-button aria-label="Show detail button" (click)="showDetail()">
+    <mat-icon>zoom_out_map</mat-icon>
+  </button>
+</div>
