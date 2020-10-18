@@ -5,15 +5,16 @@ import { combineAll, map, mergeAll } from 'rxjs/operators';
 import { Weather } from '../interfaces/weather';
 import { Location } from '../interfaces/location';
 import { LocationService } from './location.service';
-import { Coords } from '../interfaces/coords';
+import { LatLngLiteral } from '@agm/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WeatherService {
-  trigger = new Subject();
+  private _trigger = new Subject<Weather>();
   private readonly URL = 'http://api.weatherapi.com/v1';
   private readonly KEY = 'key=ca6b98f646f04779950144630202405';
+  private readonly AMOUNT_DAYS = 4;
 
   constructor(private httpClient: HttpClient, private locationService: LocationService) {
     locationService.coordsTrigger.subscribe((coords) => {
@@ -21,13 +22,17 @@ export class WeatherService {
     });
   }
 
-  search(locations: Coords): void {
+  get trigger(): Subject<Weather> {
+    return this._trigger;
+  }
+
+  search(locations: LatLngLiteral): void {
     this.getWeather(locations).subscribe((value) => {
-      this.trigger.next(value);
+      this._trigger.next(value);
     });
   }
 
-  private getWeather(query: Coords): Observable<any> {
+  private getWeather(query: LatLngLiteral): Observable<any> {
     const dates: Date[] = this.createDates();
     return forkJoin(
       dates.map((date) =>
@@ -41,7 +46,7 @@ export class WeatherService {
   }
 
   private createDates(): Date[] {
-    return [...new Array(4)].map((date, index) => {
+    return [...new Array(this.AMOUNT_DAYS)].map((date, index) => {
       date = new Date();
       date.setDate(date.getDate() + index);
       return date.toISOString().split('T').shift();
@@ -58,11 +63,10 @@ export class WeatherService {
         temp: weatherProperty.day.avgtemp_c,
         windSpeed: weatherProperty.day.maxwind_kph,
         humidity: weatherProperty.day.avghumidity,
+        chanceOfRain: weatherProperty.day.daily_chance_of_rain,
         location: {
           country: location.country,
           date: new Date(weatherProperty.date),
-          lat: location.lat,
-          lon: location.lon,
           name: location.name,
           region: location.region,
         } as Location,

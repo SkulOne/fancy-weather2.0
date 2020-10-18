@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { LocationService } from '../shared/services/location.service';
-import { Coords } from '../shared/interfaces/coords';
-import { WeatherService } from '../shared/services/weather.service';
+import { LocationService } from '../../shared/services/location.service';
 import { of } from 'rxjs';
 import LatLngBounds = google.maps.LatLngBounds;
+import { LatLngLiteral } from '@agm/core';
 
 @Component({
   selector: 'app-map',
@@ -11,13 +10,12 @@ import LatLngBounds = google.maps.LatLngBounds;
   styleUrls: ['./map.component.scss'],
 })
 export class MapComponent implements OnInit {
-  coords: Coords;
+  coords: LatLngLiteral;
   bounds: LatLngBounds;
 
-  constructor(private locationService: LocationService, private weatherService: WeatherService) {
+  constructor(private locationService: LocationService) {
     this.locationService.coordsTrigger.subscribe((value) => {
       value.subscribe((coords) => {
-        console.log(coords);
         this.coords = coords;
       });
     });
@@ -29,6 +27,5 @@ export class MapComponent implements OnInit {
 
   setLocation($event: any): void {
     this.locationService.coordsTrigger.next(of($event));
-    this.weatherService.search($event);
   }
 }

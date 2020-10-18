@@ -1,5 +1,5 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
-import { Weather } from '../../shared/interfaces/weather';
+import { Weather } from '../../../shared/interfaces/weather';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({

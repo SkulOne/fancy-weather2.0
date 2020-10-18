@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Weather } from '../../shared/interfaces/weather';
+import { Weather } from '../../../shared/interfaces/weather';
 import { DayDetailComponent } from '../day-detail/day-detail.component';
 import { MatDialog } from '@angular/material/dialog';
 

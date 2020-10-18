@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { Coords } from '../interfaces/coords';
 import LatLngBounds = google.maps.LatLngBounds;
+import { LatLngLiteral } from '@agm/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LocationService {
-  private _coordsTrigger = new Subject<Observable<Coords>>();
+  private _coordsTrigger = new Subject<Observable<LatLngLiteral>>();
   private _boundsTrigger = new Subject<LatLngBounds>();
 
   constructor() {}
 
-  setCoords(locations: Observable<Coords>): void {
+  setCoords(locations: Observable<LatLngLiteral>): void {
     this._coordsTrigger.next(locations);
   }
 
@@ -20,7 +20,7 @@ export class LocationService {
     this._boundsTrigger.next(bounds);
   }
 
-  get coordsTrigger(): Subject<Observable<Coords>> {
+  get coordsTrigger(): Subject<Observable<LatLngLiteral>> {
     return this._coordsTrigger;
   }
 
@@ -28,7 +28,7 @@ export class LocationService {
     return this._boundsTrigger;
   }
 
-  getUserCoords(): Observable<Coords> {
+  getUserCoords(): Observable<LatLngLiteral> {
     return new Observable((observer) => {
       if ('geolocation' in navigator) {
         navigator.geolocation.getCurrentPosition(

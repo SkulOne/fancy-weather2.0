@@ -7,4 +7,5 @@ export interface Weather {
   windSpeed: string;
   humidity: number;
   location: Location;
+  chanceOfRain: number;
 }

@@ -5,14 +5,14 @@
 <div class="spacer"></div>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <mat-form-field appearance="outline">
-    <mat-label>Outline form field</mat-label>
+    <mat-label>City</mat-label>
     <input
       matGoogleMapsAutocomplete
       type="(cities)"
       autocomplete="off"
       matInput
       formControlName="query"
-      placeholder="Enter city or coord"
+      placeholder="Start typing city..."
       (onAutocompleteSelected)="onSubmit()"
     />
     <mat-hint>Select a city from the dropdown list</mat-hint>

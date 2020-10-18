@@ -7,7 +7,6 @@ import { ImageService } from './shared/services/image.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'weather-app2';
   backgroundImage: string;
   constructor(private imageService: ImageService) {
     this.imageService.getRandomImageURL().subscribe((value) => {

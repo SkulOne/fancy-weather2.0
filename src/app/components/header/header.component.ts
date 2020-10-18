@@ -1,11 +1,10 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ImageService } from '../shared/services/image.service';
-import { WeatherService } from '../shared/services/weather.service';
-import { LocationService } from '../shared/services/location.service';
+import { ImageService } from '../../shared/services/image.service';
+import { WeatherService } from '../../shared/services/weather.service';
+import { LocationService } from '../../shared/services/location.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { of } from 'rxjs';
 import PlaceResult = google.maps.places.PlaceResult;
-import LatLngBounds = google.maps.LatLngBounds;
 
 @Component({
   selector: 'app-header',
@@ -16,7 +15,6 @@ export class HeaderComponent implements OnInit {
   @Output() backgroundChange = new EventEmitter<string>();
   isLoading = true;
   form: FormGroup;
-  bounds: LatLngBounds;
 
   constructor(
     private imageService: ImageService,
@@ -33,10 +31,6 @@ export class HeaderComponent implements OnInit {
   onSubmit(): void {
     if (this.form.valid) {
       const place: PlaceResult = this.form.value.query;
-      this.weatherService.search({
-        lat: place.geometry.location.lat(),
-        lng: place.geometry.location.lng(),
-      });
       this.locationsService.setBounds(place.geometry.viewport);
       this.locationsService.setCoords(of({ lat: place.geometry.location.lat(), lng: place.geometry.location.lng() }));
     }
