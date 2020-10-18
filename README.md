@@ -1,6 +1,4 @@
 # Attention!!!
-Deploy link: https://fancy-weather2.netlify.app
-
 Demo-video:https://drive.google.com/file/d/1HJEq1VFjHJ0UGRJFgynOq9_IuYLAl5NP/view?usp=sharing
 
 
