@@ -1,32 +1,28 @@
-mat-form-field {
-  color: white;
-  width: 35vw;
-}
-
-mat-icon {
-  color: white;
-  cursor: pointer;
-}
-
-.change-image-btn {
-  margin-bottom: 1.2rem;
-  margin-right: 1rem;
-  padding: 0.5rem;
-  display: flex;
-  justify-content: center;
-}
-
 :host {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   padding: 1rem 0;
+  mat-icon {
+    color: white;
+  }
+  .change-image-btn {
+    margin-bottom: 1.2rem;
+    margin-right: 1rem;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+  }
+  mat-form-field {
+    color: white;
+    width: 35vw;
+  }
 }
 
 .disable-spinner {
   display: none;
 }
-.autocomplete-container {
-  padding: 1rem 0 1rem 0;
-  width: 50%;
+
+.spacer {
+  flex: 1 1 auto;
 }

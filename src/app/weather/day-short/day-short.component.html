@@ -3,3 +3,8 @@
   {{ dayWeather.temp | number: '1.0-0' }}°
   <img src="{{ dayWeather.icon }}" alt="" height="45" width="45" />
 </span>
+<div class="show-modal-wrapper">
+  <button class="show-modal-btn" mat-icon-button aria-label="Show detail button" (click)="showDetail()">
+    <mat-icon>zoom_out_map</mat-icon>
+  </button>
+</div>

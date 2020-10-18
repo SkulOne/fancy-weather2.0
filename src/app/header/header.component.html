@@ -2,6 +2,7 @@
   <mat-spinner [class.disable-spinner]="isLoading" diameter="25"></mat-spinner>
   <mat-icon [class.disable-spinner]="!isLoading">image</mat-icon>
 </button>
+<div class="spacer"></div>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <mat-form-field appearance="outline">
     <mat-label>Outline form field</mat-label>

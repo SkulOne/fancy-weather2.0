@@ -18,6 +18,8 @@ import { WeekDayPipe } from './shared/week-day.pipe';
 import { MapComponent } from './map/map.component';
 import { AgmCoreModule } from '@agm/core';
 import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
+import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,7 @@ import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/go
     MatInputModule,
     MatButtonModule,
     MatProgressSpinnerModule,
+    ShareButtonsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDLs3CudxoCs9C43iKaJqQ31Xg3w89_8G8',
       libraries: ['places'],
@@ -46,8 +49,12 @@ import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/go
     }),
     MatGoogleMapsAutocompleteModule,
     ReactiveFormsModule,
+    MatDialogModule,
   ],
-  providers: [],
+  providers: [
+    { provide: MAT_DIALOG_DATA, useValue: {} },
+    { provide: MatDialogRef, useValue: {} },
+  ],
   bootstrap: [AppComponent],
   exports: [MapComponent],
 })

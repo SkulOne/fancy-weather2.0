@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { Weather } from '../../shared/interfaces/weather';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-day-detail',
@@ -9,7 +10,9 @@ import { Weather } from '../../shared/interfaces/weather';
 export class DayDetailComponent implements OnInit {
   @Input() dayWeather: Weather;
 
-  constructor() {}
+  constructor(@Inject(MAT_DIALOG_DATA) public data: Weather) {
+    this.dayWeather = data;
+  }
 
   ngOnInit(): void {}
 }
